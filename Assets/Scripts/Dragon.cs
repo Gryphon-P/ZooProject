@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 
-public class Dragon : Animal, IInteractable
+public class Dragon : Animal, IInteractable, IPet
 {
     // Refrences the script that takes in the player's input
     public PlayControlScript controller;
@@ -19,9 +19,10 @@ public class Dragon : Animal, IInteractable
         
     }
 
-    public override void pet()
+    public override void petAnimal()
     {
         happiness--;
+        this.textOutput.text = "You pet the dragon. He seems upset! His happiness is " + happiness.ToString();
     }
 
     void Start()
@@ -43,10 +44,12 @@ public class Dragon : Animal, IInteractable
         if (Distance <= 5.0f) {
             Debug.Log("Enter");
             controller.SetIInstance(this);
+            controller.SetIPet(this);
         }
         else {
             Debug.Log("Exit");
             controller.ClearIInstance();
+            controller.ClearIPet();
         }
     }
 
@@ -54,6 +57,11 @@ public class Dragon : Animal, IInteractable
     {
         Debug.Log("Test 4");
         feed();
+    }
+
+
+    public void pet() {
+        petAnimal();
     }
 }
 

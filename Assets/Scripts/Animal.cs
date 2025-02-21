@@ -21,7 +21,7 @@ public abstract class Animal : MonoBehaviour
     // Defines the gameobject of the animal
     public GameObject GameObj;
 
-    public abstract void pet();
+    public abstract void petAnimal();
 
     public abstract void feed();
 

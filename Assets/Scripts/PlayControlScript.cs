@@ -6,6 +6,7 @@ public class PlayControlScript : MonoBehaviour
 {
 
     private IInteractable IinteractableInstance;
+    private IPet IpetInstance;
 
     // Start is called before the first frame update
     void Start()
@@ -18,10 +19,15 @@ public class PlayControlScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F)) {
 
-            Debug.Log("Test 1");
             if (IinteractableInstance != null) {
-                Debug.Log("Test 2");
                 IinteractableInstance.interact();
+            }
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.P)) {
+            if (IpetInstance != null) {
+                IpetInstance.pet();
             }
         }
     }
@@ -31,9 +37,17 @@ public class PlayControlScript : MonoBehaviour
         IinteractableInstance = interactable;
     }
 
+    public void SetIPet(IPet petInstance) {
+        IpetInstance = petInstance;
+    }
+
     // Clears the instance
     public void ClearIInstance() {
         IinteractableInstance = null;
+    }
+
+    public void ClearIPet() {
+        IpetInstance = null;
     }
 
 }
