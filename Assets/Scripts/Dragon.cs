@@ -6,11 +6,15 @@ using UnityEngine.UIElements;
 
 public class Dragon : Animal, IInteractable
 {
+    // Refrences the script that takes in the player's input
+    public PlayControlScript controller;
+
     public override void feed()
     {
-        if (hunger <= maxHunger)
+        if (hunger < maxHunger)
         {
             hunger++;
+            this.textOutput.text = "You fed the dragon. He seems very satisfied! His hunger is " + hunger.ToString();
         }
     }
 
@@ -19,7 +23,22 @@ public class Dragon : Animal, IInteractable
         happiness--;
     }
 
-    
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Enter");
+        if (collision.CompareTag("Player")) {
+            controller = collision.GetComponent<PlayControlScript>();
+            controller.SetIInstance(this);
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        Debug.Log("exit");
+        if (collision.CompareTag("Player")) {
+            controller.ClearIInstance();
+        }
+    }
 
     void Start()
     {
@@ -27,37 +46,24 @@ public class Dragon : Animal, IInteractable
         // Defines all the properties of the dragon
         this.hunger = 100.0f;
         this.maxHunger = 100.0f;
-        this.movementSpeed = 3.0f;
         this.happiness = 100;
         this.GameObj = GetComponent<GameObject>();
 
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
-
-        // Checks if is colliding with charichter
-        if (collision.gameObject == this.Player)
-        { 
-           // Makes the sign appear
-           this.ActionSign.SetActive(true);
-           this.isNearPlayer = true;
-        }
-    }
-
-    // Checks if it is no longer near to the player
-    void OnCollisionExit(Collision collision) 
-    {
-        if (collision.gameObject == this.Player) 
-        { 
-            this.ActionSign.SetActive(false);
-            this.isNearPlayer = false;
-        }
-    }
-
     void Update()
     {
-        
+
+        // I'm using distance bc ontriggerenter is not working for some reason and I am running very low on time
+        float Distance = Mathf.Sqrt(Mathf.Pow((Player.transform.position.x - transform.position.x), 2.0f) + Mathf.Pow((Player.transform.position.y - transform.position.y), 2.0f));
+        if (Distance <= 5.0f) {
+            Debug.Log("Enter");
+            controller.SetIInstance(this);
+        }
+        else {
+            Debug.Log("Exit");
+            controller.ClearIInstance();
+        }
     }
 
     public void interact()
@@ -65,5 +71,11 @@ public class Dragon : Animal, IInteractable
         feed();
     }
 }
+
+
+
+
+
+
 
 

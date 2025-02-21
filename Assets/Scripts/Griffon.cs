@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Griffon : Animal
 {
-    // Feed a femboy to the jackalope
     public override void feed()
     {
         if (hunger <= maxHunger)

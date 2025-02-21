@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 
@@ -9,9 +10,8 @@ public abstract class Animal : MonoBehaviour
     public float hunger;
     public float maxHunger;
     public float happiness;
-    public float movementSpeed;
-    public bool isNearPlayer;
-    public Collider2D pen;
+
+    public TextMeshProUGUI textOutput;
 
     public GameObject ActionSign;
 
