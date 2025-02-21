@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Dragon : Animal
+public class Dragon : Animal, IInteractable
 {
     public override void feed()
     {
@@ -58,6 +58,11 @@ public class Dragon : Animal
     void Update()
     {
         
+    }
+
+    public void interact()
+    {
+        feed();
     }
 }
 
