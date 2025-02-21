@@ -17,7 +17,10 @@ public class PlayControlScript : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.F)) {
+
+            Debug.Log("Test 1");
             if (IinteractableInstance != null) {
+                Debug.Log("Test 2");
                 IinteractableInstance.interact();
             }
         }

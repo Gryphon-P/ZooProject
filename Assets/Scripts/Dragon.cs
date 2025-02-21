@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 
 public class Dragon : Animal, IInteractable
@@ -11,33 +12,16 @@ public class Dragon : Animal, IInteractable
 
     public override void feed()
     {
-        if (hunger < maxHunger)
-        {
-            hunger++;
-            this.textOutput.text = "You fed the dragon. He seems very satisfied! His hunger is " + hunger.ToString();
-        }
+
+        Debug.Log("Test 3");
+        hunger++;
+        this.textOutput.text = "You fed the dragon. He seems very satisfied! His hunger is " + hunger.ToString();
+        
     }
 
     public override void pet()
     {
         happiness--;
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log("Enter");
-        if (collision.CompareTag("Player")) {
-            controller = collision.GetComponent<PlayControlScript>();
-            controller.SetIInstance(this);
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D collision)
-    {
-        Debug.Log("exit");
-        if (collision.CompareTag("Player")) {
-            controller.ClearIInstance();
-        }
     }
 
     void Start()
@@ -68,6 +52,7 @@ public class Dragon : Animal, IInteractable
 
     public void interact()
     {
+        Debug.Log("Test 4");
         feed();
     }
 }
