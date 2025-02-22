@@ -47,9 +47,12 @@ public class Griffin : Animal, IInteractable, IPet
             controller.SetIPet(this);
         }
         else {
-            Debug.Log("Exit");
-            controller.ClearIInstance();
-            controller.ClearIPet();
+            if (controller.IpetInstance == this) {
+                Debug.Log("Exit");
+                controller.ClearIInstance();
+                controller.ClearIPet();
+            }
+            
         }
     }
 

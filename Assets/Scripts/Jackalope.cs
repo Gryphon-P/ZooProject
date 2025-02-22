@@ -16,7 +16,7 @@ public class Jackalope : Animal, IInteractable, IPet
         // Yes, I know, retrospectivley that hunger should go down with the more food an animal eats but it's implemented now and I don't really have the time to change it
         Debug.Log("Test 3");
         hunger++;
-        this.textOutput.text = "You feed the jackalope. He hunger seems unending. Her hunger is " + hunger.ToString();
+        this.textOutput.text = "You feed the jackalope. Her hunger seems unending. Her hunger is " + hunger.ToString();
         
     }
 
@@ -47,9 +47,12 @@ public class Jackalope : Animal, IInteractable, IPet
             controller.SetIPet(this);
         }
         else {
-            Debug.Log("Exit");
-            controller.ClearIInstance();
-            controller.ClearIPet();
+            if (controller.IpetInstance == this) {
+                Debug.Log("Exit");
+                controller.ClearIInstance();
+                controller.ClearIPet();
+            }
+            
         }
     }
 

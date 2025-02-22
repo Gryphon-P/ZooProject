@@ -14,7 +14,10 @@ public class MakeSignAppear : MonoBehaviour
         }
 
         else {
-            Sign.SetActive(false);
+            if (Sign.activeSelf) {
+                Sign.SetActive(false);
+            }
+            
         }
     }
 }

@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayControlScript : MonoBehaviour
 {
 
-    private IInteractable IinteractableInstance;
-    private IPet IpetInstance;
+    public IInteractable IinteractableInstance;
+    public IPet IpetInstance;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +30,8 @@ public class PlayControlScript : MonoBehaviour
                 IpetInstance.pet();
             }
         }
+
+        Debug.Log(IpetInstance);
     }
 
     // Sets the instance
