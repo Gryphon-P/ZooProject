@@ -15,14 +15,14 @@ public class Griffin : Animal, IInteractable, IPet
 
         Debug.Log("Test 3");
         hunger++;
-        this.textOutput.text = "You fed the griffin. He seems very satisfied! His hunger is " + hunger.ToString();
+        this.textOutput.text = "You fed the griffin. He happi! His hunger is " + hunger.ToString();
 
     }
 
     public override void petAnimal()
     {
         happiness*=2.0f;
-        this.textOutput.text = "You pet the griffin. He seems happy! His happiness is " + happiness.ToString();
+        this.textOutput.text = "You pet the griffin. He demands more pets. His happiness is " + happiness.ToString();
     }
 
     void Start()
